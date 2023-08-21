@@ -17,7 +17,13 @@
 
 ![Dinâmica do projeto Imagem](files/dinamica-projeto.png)
 
+## Detalhamento Geral
+
+![Detalhamento Geral](files/detalhamento-geral.png)
+
 ## Dia 1 - Microsserviço backend para o rastreamento
+
+![slides da aula](files/slides-a1.png)
 
 ## Dia 2 - Frontend de rastreamento
 
