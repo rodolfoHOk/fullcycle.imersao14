@@ -9,9 +9,9 @@ services:
       - .:/home/node/app
 
   db:
-    image: bitnami/mongodb:5.0.17
-    volumes:
-      - mongodb_data:/bitnami/mongodb
+    image: bitnami/mongodb:5.0.19
+    # volumes:
+    #   - mongodb_data:/bitnami/mongodb
     environment:
       MONGODB_ROOT_PASSWORD: root
       MONGODB_REPLICA_SET_MODE: primary
