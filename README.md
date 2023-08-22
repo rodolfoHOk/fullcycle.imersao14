@@ -23,6 +23,13 @@
 
 ## Dia 2 - Frontend de rastreamento
 
+### Tecnologias
+
+- Typescript / Javascript
+- Next.js
+- React.js / React server components
+- Google Maps API
+
 ## Dia 3 - Integração do Backend, Frontend e Apache Kafka
 
 ## Dia 4 - Microsserviço de cálculo de frete
