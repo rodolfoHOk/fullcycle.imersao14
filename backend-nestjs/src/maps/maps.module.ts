@@ -15,5 +15,6 @@ import { DirectionsController } from './directions/directions.controller';
       useValue: new GoogleMapsClient(),
     },
   ],
+  exports: [DirectionsService],
 })
 export class MapsModule {}
