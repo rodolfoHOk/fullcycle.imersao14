@@ -21,7 +21,7 @@ export function AdminPage() {
     socket.on('admin-new-points', async (data: SocketPayload) => {
       if (!map?.hasRoute(data.route_id)) {
         const response = await fetch(
-          `http://localhost:3000/routes/${data.route_id}`
+          `http://localhost:3001/api/routes/${data.route_id}`
         );
         const route: Route = await response.json();
 

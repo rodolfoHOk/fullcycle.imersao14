@@ -24,7 +24,7 @@ export function DrivePage() {
     const routeId = (document.getElementById('route') as HTMLSelectElement)
       .value;
 
-    const response = await fetch(`http://localhost:3000/routes/${routeId}`);
+    const response = await fetch(`http://localhost:3001/api/routes/${routeId}`);
     const route: Route = await response.json();
 
     map?.removeAllRoutes();
