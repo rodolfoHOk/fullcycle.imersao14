@@ -1,10 +1,17 @@
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import useSwr from 'swr';
 import { useMap } from '@/hooks/useMap';
 import { fetcher } from '@/utils/http';
 import { Route } from '@/utils/models';
+import { socket } from '@/utils/socket-io';
+
+type SocketPayload = {
+  route_id: string;
+  lat: number;
+  lng: number;
+};
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -46,11 +53,31 @@ export function DrivePage() {
     for (const step of steps) {
       await sleep(2000);
       map?.moveCar(routeId, step.start_location);
+      const startPayload: SocketPayload = {
+        route_id: routeId,
+        lat: step.start_location.lat,
+        lng: step.start_location.lng,
+      };
+      socket.emit('new-points', startPayload);
 
       await sleep(2000);
       map?.moveCar(routeId, step.end_location);
+      const endPayload: SocketPayload = {
+        route_id: routeId,
+        lat: step.end_location.lat,
+        lng: step.end_location.lng,
+      };
+      socket.emit('new-points', endPayload);
     }
   }
+
+  useEffect(() => {
+    socket.connect();
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   return (
     <div

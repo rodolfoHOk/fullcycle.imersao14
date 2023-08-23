@@ -32,6 +32,19 @@
 
 ## Dia 3 - Integração do Backend, Frontend e Apache Kafka
 
+### Tecnologias
+
+- Typescript / Javascript
+- Next.js
+- React.js / React server components
+- Google Maps API
+- Route handler / Next API
+- Material UI
+- Web sockets / Socket.io
+- Kafka
+- Bulljs no Nest.js
+- Prometheus
+
 ## Dia 4 - Microsserviço de cálculo de frete
 
 ## Dia 5 - Métricas e dashboard com Prometheus e Grafana
