@@ -1,6 +1,7 @@
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry';
 import './globals.css';
 import type { Metadata } from 'next';
+import { NavBar } from '@/components/NavBar';
 
 export const metadata: Metadata = {
   title: 'Imersão FS&FC 14 - Rastreamento Veicular',
@@ -15,7 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeRegistry>{children}</ThemeRegistry>
+        <ThemeRegistry>
+          <NavBar />
+          {children}
+        </ThemeRegistry>
       </body>
     </html>
   );

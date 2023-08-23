@@ -6,6 +6,8 @@ import { useMap } from '@/hooks/useMap';
 import { fetcher } from '@/utils/http';
 import { Route } from '@/utils/models';
 import { socket } from '@/utils/socket-io';
+import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
+import { Button, NativeSelect, Typography } from '@mui/material';
 
 type SocketPayload = {
   route_id: string;
@@ -80,19 +82,12 @@ export function DrivePage() {
   }, []);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        height: '100%',
-        width: '100%',
-      }}
-    >
-      <div>
-        <h1>Minha viagem</h1>
+    <Grid2 container sx={{ display: 'flex', flex: 1 }}>
+      <Grid2 xs={4} px={2}>
+        <Typography variant="h4">Minha viagem</Typography>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <select id="route">
+          <NativeSelect id="route">
             {isLoading && <option>Carregando rotas...</option>}
 
             {routes!.map((route) => (
@@ -100,23 +95,22 @@ export function DrivePage() {
                 {route.name}
               </option>
             ))}
-          </select>
+          </NativeSelect>
 
-          <button type="submit" onClick={startRoute}>
+          <Button
+            type="button"
+            variant="contained"
+            fullWidth
+            sx={{ mt: 1 }}
+            onClick={startRoute}
+          >
             Iniciar a viagem
-          </button>
+          </Button>
         </div>
-      </div>
+      </Grid2>
 
-      <div
-        id="map"
-        style={{
-          height: '100%',
-          width: '100%',
-        }}
-        ref={mapContainerRef}
-      ></div>
-    </div>
+      <Grid2 id="map" xs={8} ref={mapContainerRef}></Grid2>
+    </Grid2>
   );
 }
 
