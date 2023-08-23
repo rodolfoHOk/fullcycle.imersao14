@@ -4,12 +4,17 @@ import { RoutesDriverDto } from './dto/routes-driver.dto';
 import { InjectQueue } from '@nestjs/bull';
 import { Queue } from 'bull';
 import { DirectionsResponseData } from '@googlemaps/google-maps-services-js';
+import { InjectMetric } from '@willsoto/nestjs-prometheus';
+import { Counter } from 'prom-client';
 
 @Injectable()
 export class RoutesDriverService {
   constructor(
     private prismaService: PrismaService,
     @InjectQueue('kafka-producer') private kafkaProducerQueue: Queue,
+    @InjectMetric('route_started_counter') private routeStartedCounter: Counter,
+    @InjectMetric('route_finished_counter')
+    private routeFinishedCounter: Counter,
   ) {}
 
   async createOrUpdate(dto: RoutesDriverDto) {
@@ -50,6 +55,8 @@ export class RoutesDriverService {
     });
 
     if (countRouteDriver === 0) {
+      this.routeStartedCounter.inc();
+
       await this.kafkaProducerQueue.add({
         event: 'RouteStarted',
         id: routeDriver.route.id,
@@ -75,6 +82,8 @@ export class RoutesDriverService {
       lastPoint.end_location.lat === dto.lat &&
       lastPoint.end_location.lng === dto.lng
     ) {
+      this.routeFinishedCounter.inc();
+
       await this.kafkaProducerQueue.add({
         event: 'RouteFinished',
         id: routeDriver.route.id,
