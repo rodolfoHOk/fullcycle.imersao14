@@ -1,13 +1,12 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import useSwr from 'swr';
 import { useMap } from '@/hooks/useMap';
-import { fetcher } from '@/utils/http';
 import { Route } from '@/utils/models';
 import { socket } from '@/utils/socket-io';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
-import { Button, NativeSelect, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
+import { RouteSelect } from '@/components/RouteSelect';
 
 type SocketPayload = {
   route_id: string;
@@ -20,14 +19,6 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 export function DrivePage() {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const map = useMap(mapContainerRef);
-
-  const {
-    data: routes,
-    error,
-    isLoading,
-  } = useSwr<Route[]>('http://localhost:3000/routes', fetcher, {
-    fallbackData: [],
-  });
 
   async function startRoute() {
     const routeId = (document.getElementById('route') as HTMLSelectElement)
@@ -87,15 +78,7 @@ export function DrivePage() {
         <Typography variant="h4">Minha viagem</Typography>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <NativeSelect id="route">
-            {isLoading && <option>Carregando rotas...</option>}
-
-            {routes!.map((route) => (
-              <option key={route.id} value={route.id}>
-                {route.name}
-              </option>
-            ))}
-          </NativeSelect>
+          <RouteSelect id="route" />
 
           <Button
             type="button"
