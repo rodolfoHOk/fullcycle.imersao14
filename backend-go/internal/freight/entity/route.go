@@ -2,6 +2,24 @@ package entity
 
 import "time"
 
+type CustomTime time.Time
+const layout = "2006-01-02T15:04"
+
+func (ct *CustomTime) UnmarshalJSON(b []byte) error {
+	t, err := time.Parse(layout, string(b))
+	if err != nil {
+		return err
+	}
+	*ct = CustomTime(t)
+	return nil
+}
+
+type RouteRepository interface {
+	Create(route *Route) error
+	FindByID(id string) (*Route, error)
+	Update(route *Route) error
+}
+
 type Route struct {
 	ID string
 	Name string
@@ -24,4 +42,9 @@ func NewRoute(id, name string, distance float64) *Route {
 func (r *Route) Start(startedAt time.Time) {
 	r.Status = "started"
 	r.StartedAt = startedAt
+}
+
+func (r *Route) Finish(finishedAT time.Time) {
+	r.Status = "finished"
+	r.FinishedAt = finishedAT
 }
