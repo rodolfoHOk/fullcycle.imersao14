@@ -12,11 +12,11 @@ type CreateRouteInput struct {
 }
 
 type CreateRouteOutput struct {
-	ID string
-	Name string
-	Distance float64
-	Status string
-	FreightPrice float64
+	ID string `json:"id"`
+	Name string `json:"name"`
+	Distance float64 `json:"distance"`
+	Status string `json:"status"`
+	FreightPrice float64 `json:"freight_price"`
 }
 
 type CreateRouteUseCase struct {

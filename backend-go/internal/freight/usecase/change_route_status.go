@@ -14,10 +14,10 @@ type ChangeRouteStatusInput struct {
 }
 
 type ChangeRouteStatusOutput struct {
-	ID string
-	Status string
-	StartedAt entity.CustomTime
-	FinishedAt entity.CustomTime
+	ID string `json:"id"`
+	Status string `json:"status"`
+	StartedAt entity.CustomTime `json:"started_at"`
+	FinishedAt entity.CustomTime `json:"finished_at"`
 }
 
 type ChangeRouteStatusUseCase struct {
