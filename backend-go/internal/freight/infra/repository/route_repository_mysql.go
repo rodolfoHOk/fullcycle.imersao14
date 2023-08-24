@@ -26,8 +26,8 @@ func (r *RouteRepositoryMySql) Create(route *entity.Route) error {
 }
 
 func (r *RouteRepositoryMySql) FindByID(id string) (*entity.Route, error) {
-	sql := "SELECT id, name, distance, status, freight_price, started_at, finished_at FROM routes WHERE id = ?"
-	row := r.db.QueryRow(sql, id)
+	sqlSmt := "SELECT id, name, distance, status, freight_price, started_at, finished_at FROM routes WHERE id = ?"
+	row := r.db.QueryRow(sqlSmt, id)
 
 	var startedAt, finishedAt sql.NullTime
 	
