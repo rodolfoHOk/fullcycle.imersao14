@@ -6,12 +6,16 @@
 
 - Docker
 - Linguagem Go
-- Typescript
-- Next.js / React.js
+- Typescript / Javascript
 - Nest.js / Node.js
+- Next.js / React.js
+- MongoDB
+- MySQL
+- Web sockets
 - Apache Kafka
 - Prometheus
 - Grafana
+- Google Maps API
 
 ## Dinâmica do projeto / Arquitetura Geral
 
@@ -19,7 +23,14 @@
 
 ## Dia 1 - Microsserviço backend para o rastreamento
 
-![slides da aula](files/slides-a1.png)
+### Tecnologias
+
+- Typescript / Javascript
+- Nest.js / Node.js
+- Prisma ORM
+- MongoDB
+- Rest
+- Google Maps API
 
 ## Dia 2 - Frontend de rastreamento
 
@@ -34,19 +45,39 @@
 
 ### Tecnologias
 
-- Typescript / Javascript
-- Next.js
-- React.js / React server components
-- Google Maps API
+- Idem Aula 2 +
 - Route handler / Next API
 - Material UI
 - Web sockets / Socket.io
-- Kafka
+- Apache Kafka
 - Bulljs no Nest.js
 - Prometheus
 
 ## Dia 4 - Microsserviço de cálculo de frete
 
+### Tecnologias
+
+- Go lang
+- MySQL
+- Apache Kafka
+- Docker
+
 ## Dia 5 - Métricas e dashboard com Prometheus e Grafana
 
-## Repositórios
+### Tecnologias
+
+- Idem aula 4 +
+- Prometheus
+- Grafana
+
+## Slides
+
+![slides da aula](files/slides.png)
+
+## Projetos
+
+- [Nest.js Backend](https://github.com/rodolfoHOk/fullcycle.imersao14/tree/main/backend-nestjs)
+
+- [Go Backend](https://github.com/rodolfoHOk/fullcycle.imersao14/tree/main/backend-go)
+
+- [Next Frontend](https://github.com/rodolfoHOk/fullcycle.imersao14/tree/main/frontend-nextjs)

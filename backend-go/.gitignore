@@ -1,1 +1,2 @@
-.docker
+.docker/mysql
+.docker/grafana_data
